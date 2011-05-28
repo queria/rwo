@@ -8,6 +8,8 @@ p { margin: 3px; }
 a { color: #880; background-color:black; }
 a:hover { color: #cc0; }
 
+.highlight { font-weight:bold; color:#f00;}
+
 h1 { text-align:center; }
 .mainDesc { float:right; color:#aaa; width:20em;margin:1em;}
 .filters { margin:1.5em; }

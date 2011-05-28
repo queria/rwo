@@ -4,6 +4,7 @@ class Effect(object):
     def __init__(self, classes, properties):
         self.classes = classes
         self.properties = properties
+        self.properties_lower = [p.lower() for p in properties]
 
 class Rune(object):
     def __init__(self, name, clvl, ilvl, rarity, effects):
@@ -24,7 +25,7 @@ class Word(object):
 
     def in_effects(self, text):
         for e in self.effects:
-            for p in e.properties:
+            for p in e.properties_lower:
                 if text in p:
                     return True
         return False
@@ -68,7 +69,8 @@ class RWO(object):
         if clvl_max < 99:
             words = [w for w in words if w.clvl <= clvl_max]
         if ineffect:
-            words = [w for w in words if w.in_effects(ineffect)]
+            ineffect_lower = ineffect.lower()
+            words = [w for w in words if w.in_effects(ineffect_lower)]
 
         #return [w for w in self.words if not w in words]
         return words

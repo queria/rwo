@@ -49,5 +49,10 @@ $(document).ready( function () {
 	$('.filters input').change(function () {
 		$('.filters').submit();
 	});
+
+	var hiliText = $('input[name="ineffect"]').val();
+	if(hiliText.length > 0) {
+		$('.effectProp').highlight(hiliText);
+	}
 });
 
