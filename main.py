@@ -2,6 +2,9 @@
 
 import sys
 import os
+import urlparse
+import cgi
+sys.path.append(os.path.dirname(__file__))
 import rwo
 import data
 from Cheetah import Template
@@ -36,11 +39,12 @@ def maxint(numstr, safenum):
         return safenum
     return numstr
 
+lists = rwo.RWO(data.runes, data.words)
+
 def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
         ineffect=''):
     """starting point - select all rw matching criterias and renders main html
     template"""
-    lists = rwo.RWO(data.runes, data.words)
     
     selected_runes = make_list(selected_runes)
     selected_classes = make_list(selected_classes)
@@ -70,7 +74,6 @@ def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
     return t
 
 def index_cgi():
-    import cgi
     args = cgi.FieldStorage()
     print 'Content-Type: text/html'
     print ''
@@ -80,6 +83,18 @@ def index_cgi():
             args.getfirst('clvl_min', 1),
             args.getfirst('clvl_max', 99),
             args.getfirst('ineffect', ''))
+
+def application(environ, start_response):
+    args = urlparse.parse_qs(environ['QUERY_STRING'])
+    status = '200 OK'
+    resp_headers = [('Content-Type', 'text/html')]
+    start_response(status, resp_headers)
+    return [str(index(None,
+            args.get('selected_runes', []),
+            args.get('selected_classes', []),
+            args.get('clvl_min', [1])[0],
+            args.get('clvl_max', [99])[0],
+            args.get('ineffect', [''])[0])), '#'+str(os.getpid())]
 
 if __name__ == '__main__':
     index_cgi()

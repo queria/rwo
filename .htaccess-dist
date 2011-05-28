@@ -2,6 +2,8 @@
 RewriteEngine On
 RewriteBase /rwo/
 
+RewriteRule ^media/(.*) public/$1 [L,QSA]
+
 # for mod_python
 RewriteRule ^$ main.py/index [L,QSA]
 # for cgi
