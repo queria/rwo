@@ -1,0 +1,7 @@
+<li><label>
+	<input type="checkbox" name="selected_classes" class="$str.join(' ', $c['cats'])"
+	#if $c['name'] in $item_classes_selected
+		checked="checked"
+	#end if
+	value="$c['name']" />$c['name']
+</label></li>

@@ -1,0 +1,13 @@
+		#if $runes:
+		#for $rarity in $runes:
+			<ul class="runeGroup" id="$rarity['name']">
+				<li><h4>$rarity['name']</></li>
+				#for $r in $rarity['runes']:
+					#set global $r = $r
+					#include $tpldir+"rune_line.html"
+				#end for
+			</ul>
+		#end for
+		#else
+		No runes
+		#end if

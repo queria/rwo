@@ -1,0 +1,19 @@
+<div class="runeword">
+	<h3>$w.name</h3>
+	<div class="runes">
+	#for $r in $w.runes
+		$r
+	#end for
+	</div>
+	<div class="clvl">Char.Level: $w.clvl</div>
+	<div class="effects">
+	#for $e in $w.effects
+		<div class="effect">
+			<div class="effectClass"> $str.join('/', $e.classes): </div>
+			#for $ep in $e.properties:
+				<div class="effectProp">$ep</div>
+			#end for
+		</div>
+	#end for
+	</div>
+</div>

@@ -1,0 +1,11 @@
+		#if $item_classes:
+		<ul>
+			#for $c in $item_classes:
+				#set global $c = $c
+				#include $tpldir+"item_class.html"
+			#end for
+		</ul>
+
+		#else
+		No item classes
+		#end if

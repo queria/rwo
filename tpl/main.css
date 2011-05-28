@@ -1,0 +1,47 @@
+* {
+	padding:0px;
+	margin:0px;
+}
+html { background-color: black; color: #ccc; font-size:0.9em; font-family:sans-serif;}
+h1, h2, h3 { margin: 2px 0px 2px 0px; }
+p { margin: 3px; }
+a { color: #880; background-color:black; }
+a:hover { color: #cc0; }
+
+h1 { text-align:center; }
+.mainDesc { float:right; color:#aaa; width:20em;margin:1em;}
+.filters { margin:1.5em; }
+.filters .runes, .filters .classes { float:left; margin-right: 2em; }
+button { width: 10em; }
+.filters a {
+	display:block;
+	padding:2px;
+	margin:1px;
+	border:1px solid #333;
+	background-color:black;
+	text-align:center;
+	text-decoration:none;
+}
+.filters a.selected {
+	color:yellow;
+}
+.filters ul {
+	float:left;
+	width:10em;
+}
+.filters li { list-style-type: none; }
+.filters li label:hover { color:#9c9; }
+.filters li input { background-color: #222; color:#dc0; border: 1px solid #333; }
+.filters .bottoms { clear: both; }
+.filters .ineffect { display: inline; }
+.filters .clvl { display: inline; }
+.filters .clvl input { width: 2em; }
+.filters .submit { color:white; background-color:black; }
+
+.wordlist {}
+.runeword { margin: 0.2em; border:1px solid #666; font-size:smaller;}
+.runeword h3, .runeword .clvl, .runeword .runes { display: inline; margin: 1em; }
+.runeword h3 { color:#dd5;}
+.runeword .runes { font-style:italic; color:#99c; }
+.runeword .effectProp { margin-left: 2em; }
+

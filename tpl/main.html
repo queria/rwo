@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>D2RuneWords Online</title>
+		<link rel="stylesheet" type="text/css" href="tpl/main.css" />
+		<script type="text/javascript" src="tpl/js/jquery.min.js"></script>
+		<script type="text/javascript" src="tpl/js/jquery-ui.min.js"></script>
+		<script type="text/javascript" src="tpl/js/main.js"></script>
+	</head>
+	<body>
+		<h1>Diablo 2 - RuneWords Online</h1>
+		<p class="mainDesc">Here you can search for all runewords of Diablo 2, specifiing runes, item classes, char.level, effects and so on.</p>
+		<form class="filters">
+			<h2>Search filters:</h2>
+			<div class="runes">
+				<h3>Runes:</h3>
+				#include $tpldir+"rune_list.html"
+			</div>
+			<div class="classes">
+				<h3>RW classes:</h3>
+				#include $tpldir+"item_classes_list.html"
+			</div>
+			<div class="bottoms">
+				<div class="clvl">
+					Clvl: <input type="text" maxlength="2" name="clvl_min" value="$clvl_min" />
+					- <input type="text" maxlength="2" name="clvl_max" value="$clvl_max" />
+				</div>
+				<div class="ineffect">
+					Text in effects: <input type="text" name="ineffect" value="$ineffect" />
+				</div>
+				<input type="submit" class="submit" value="Search" />
+			</div>
+		</form>
+		<div class="wordlist">
+			<h2>Matching RuneWords ($len($words)):</h2>
+			#for $w in $words
+				#set global $w = $w
+				#include $tpldir+"runeword.html"
+			#end for
+		</div>
+		<div id="log">
+			#for $l in $log
+			<div class="entry">$l</div>
+			#end for
+		</div>
+	</body>
+</html>
+

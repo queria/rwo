@@ -1,0 +1,7 @@
+
+RewriteEngine On
+RewriteBase /rwo/
+
+#DirectoryIndex main.py/index
+RewriteRule ^$ main.py/index [L,QSA]
+
