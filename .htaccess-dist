@@ -2,6 +2,8 @@
 RewriteEngine On
 RewriteBase /rwo/
 
-#DirectoryIndex main.py/index
+# for mod_python
 RewriteRule ^$ main.py/index [L,QSA]
+# for cgi
+#RewriteRule ^$ main.py [L,QSA]
 
