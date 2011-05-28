@@ -41,7 +41,7 @@ def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
     """starting point - select all rw matching criterias and renders main html
     template"""
     lists = rwo.RWO(data.runes, data.words)
-
+    
     selected_runes = make_list(selected_runes)
     selected_classes = make_list(selected_classes)
     
@@ -69,6 +69,18 @@ def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
     t.log = lists.log
     return t
 
+def index_cgi():
+    import cgi
+    args = cgi.FieldStorage()
+    print 'Content-Type: text/html'
+    print ''
+    print index(None,
+            args.getlist('selected_runes'),
+            args.getlist('selected_classes'),
+            args.getfirst('clvl_min', 1),
+            args.getfirst('clvl_max', 99),
+            args.getfirst('ineffect', ''))
+
 if __name__ == '__main__':
-    index(None)
+    index_cgi()
 
