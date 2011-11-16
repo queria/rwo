@@ -101,7 +101,7 @@ def application(environ, start_response):
             args.get('clvl_min', [1])[0],
             args.get('clvl_max', [99])[0],
             args.get('fulltext', [''])[0],
-            args.get('runecount', [1])[0])), '#'+str(os.getpid())]
+            args.get('runecount', [0])[0])), '#'+str(os.getpid())]
 
 if __name__ == '__main__':
     index_cgi()
