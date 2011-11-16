@@ -57,8 +57,10 @@ class RWO(object):
         return self.runes
 
     def search_words(self, runes=[], classes=[], clvl_min=1, clvl_max=99,
-            ineffect=''):
+            fulltext='', runecount=0, inname=''):
         words = self.words
+        if runecount:
+            words = [w for w in words if len(w.runes) == runecount]
         if runes:
             words = [w for w in words if w.from_runes(runes)]
         if classes:
@@ -68,9 +70,18 @@ class RWO(object):
             words = [w for w in words if w.clvl >= clvl_min]
         if clvl_max < 99:
             words = [w for w in words if w.clvl <= clvl_max]
-        if ineffect:
-            ineffect_lower = ineffect.lower()
-            words = [w for w in words if w.in_effects(ineffect_lower)]
+        if fulltext:
+            fulltext_lower = fulltext.lower()
+            ft_inrunes = [w for w in words if
+                fulltext_lower in [r.lower() for r in w.runes]]
+            ft_ineffect = [w for w in words if w.in_effects(fulltext_lower)]
+            ft_inname = [w for w in words if fulltext_lower in w.name.lower()]
+            words = [w for w in words if (
+                (w in ft_inrunes)
+                or
+                (w in ft_ineffect)
+                or
+                (w in ft_inname))]
 
         #return [w for w in self.words if not w in words]
         return words

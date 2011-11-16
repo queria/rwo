@@ -35,7 +35,8 @@ button { width: 10em; }
 .filters li label:hover { color:#9c9; }
 .filters li input { background-color: #222; color:#dc0; border: 1px solid #333; }
 .filters .bottoms { clear: both; }
-.filters .ineffect { display: inline; }
+.filters .fulltext { display: inline; }
+.filters .runecount { display: inline; }
 .filters .clvl { display: inline; }
 .filters .clvl input { width: 2em; }
 .filters .submit { color:white; background-color:black; }

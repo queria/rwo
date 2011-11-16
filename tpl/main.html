@@ -28,8 +28,20 @@
 					Clvl: <input type="text" maxlength="2" name="clvl_min" value="$clvl_min" />
 					- <input type="text" maxlength="2" name="clvl_max" value="$clvl_max" />
 				</div>
-				<div class="ineffect">
-					Text in effects: <input type="text" name="ineffect" value="$ineffect" />
+				<div class="fulltext">
+					Text in rw, effect or rune: <input type="text" name="fulltext" value="$fulltext" />
+				</div>
+				<div class="runecount">
+					Socket count: <select name="runecount">
+						<option value="0">&mdash;</option>
+						#for $rc in range(2,7)
+							#if int($runecount) == $rc
+							<option value="$rc" selected="selected">$rc</option>
+							#else
+							<option value="$rc">$rc</option>
+							#end if
+						#end for
+						</select>
 				</div>
 				<input type="submit" class="submit" value="Search" />
 			</div>

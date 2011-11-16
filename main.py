@@ -42,7 +42,7 @@ def maxint(numstr, safenum):
 lists = rwo.RWO(data.runes, data.words)
 
 def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
-        ineffect=''):
+        fulltext='', runecount=0):
     """starting point - select all rw matching criterias and renders main html
     template"""
     
@@ -57,6 +57,9 @@ def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
     clvl_min = maxint(clvl_min, 1)
     clvl_max = minint(clvl_max, 99)
 
+    runecount = minint(runecount, 6)
+    runecount = maxint(runecount, 0)
+
     t = tpl('main.html')
     t.clvl_min = clvl_min
     t.clvl_max = clvl_max
@@ -64,12 +67,14 @@ def index(req, selected_runes=[], selected_classes=[], clvl_min=1, clvl_max=99,
     t.runes_selected = selected_runes
     t.item_classes = lists.all_item_classes()
     t.item_classes_selected = selected_classes
-    t.ineffect = ineffect
+    t.fulltext = fulltext 
+    t.runecount = runecount
     t.words = lists.search_words(
             selected_runes,
             selected_classes,
             clvl_min, clvl_max,
-            ineffect)
+            fulltext,
+            runecount)
     t.log = lists.log
     return t
 
@@ -82,7 +87,8 @@ def index_cgi():
             args.getlist('selected_classes'),
             args.getfirst('clvl_min', 1),
             args.getfirst('clvl_max', 99),
-            args.getfirst('ineffect', ''))
+            args.getfirst('fulltext', ''),
+            args.getfirst('runecount', 0))
 
 def application(environ, start_response):
     args = urlparse.parse_qs(environ['QUERY_STRING'])
@@ -94,7 +100,8 @@ def application(environ, start_response):
             args.get('selected_classes', []),
             args.get('clvl_min', [1])[0],
             args.get('clvl_max', [99])[0],
-            args.get('ineffect', [''])[0])), '#'+str(os.getpid())]
+            args.get('fulltext', [''])[0],
+            args.get('runecount', [1])[0])), '#'+str(os.getpid())]
 
 if __name__ == '__main__':
     index_cgi()
