@@ -6,12 +6,18 @@ class Effect(object):
         self.properties = properties
         self.properties_lower = [p.lower() for p in properties]
 
+    def __str__(self):
+        return '/'.join(self.classes) + ' => ' + str(self.properties) + ' '
+
 class Rune(object):
     def __init__(self, name, clvl, ilvl, rarity, effects):
         self.name = name
         self.clvl = clvl
         self.rarity = rarity
         self.effects = effects
+
+    def effects_plain_text(self):
+        return "\n".join([str(e) for e in self.effects])
 
 class Word(object):
 
